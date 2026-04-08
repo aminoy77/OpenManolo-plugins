@@ -243,5 +243,180 @@
     "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/battery.py",
     "description": "Obtiene información detallada de la batería (nivel, estado, tiempo restante) en laptops.",
     "author": "Arnau"
+  },
+  "email": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/email.py",
+    "description": "Envía emails simples a través de SMTP (Gmail, Outlook, etc.).",
+    "author": "Arnau"
+  },
+  "rss": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/rss.py",
+    "description": "Lee feeds RSS y noticias por temática de una URL específica.",
+    "author": "Arnau"
+  },
+  "translatefile": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/translatefile.py",
+    "description": "Traduce el contenido de un archivo de texto completo a un idioma de destino.",
+    "author": "Arnau"
+  },
+  "webscrape": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/webscrape.py",
+    "description": "Extrae información específica de cualquier página web utilizando selectores CSS o XPath.",
+    "author": "Arnau"
+  },
+  "linkedin": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/linkedin.py",
+    "description": "Busca perfiles de usuario o listados de trabajo en LinkedIn (simulado).",
+    "author": "Arnau"
+  },
+  "twitter": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/twitter.py",
+    "description": "Busca tweets recientes por palabra clave o muestra trending topics (simulado).",
+    "author": "Arnau"
+  },
+  "reddit": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/reddit.py",
+    "description": "Busca posts y comentarios en Reddit por palabra clave o subreddit (simulado).",
+    "author": "Arnau"
+  },
+  "instagram": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/instagram.py",
+    "description": "Obtiene información básica de perfiles públicos de Instagram (simulado).",
+    "author": "Arnau"
+  },
+  "tiktok": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/tiktok.py",
+    "description": "Busca vídeos trending o por hashtag en TikTok (simulado).",
+    "author": "Arnau"
+  },
+  "discord": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/discord.py",
+    "description": "Envía mensajes a canales de Discord utilizando un webhook.",
+    "author": "Arnau"
+  },
+  "telegram": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/telegram.py",
+    "description": "Envía mensajes o notificaciones a un chat de Telegram utilizando la API de Bot.",
+    "author": "Arnau"
+  },
+  "whatsapp": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/whatsapp.py",
+    "description": "Envía mensajes vía WhatsApp Web (simulado, requiere configuración manual o Selenium).",
+    "author": "Arnau"
+  },
+  "voice": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/voice.py",
+    "description": "Convierte texto a voz y reproduce el audio (simulado).",
+    "author": "Arnau"
+  },
+  "speech": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/speech.py",
+    "description": "Realiza reconocimiento de voz a texto (simulado, requiere configuración de micrófono).",
+    "author": "Arnau"
+  },
+  "timer": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/timer.py",
+    "description": "Inicia un temporizador con alarma y notificación.",
+    "author": "Arnau"
+  },
+  "alarm": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/alarm.py",
+    "description": "Programa alarmas con un mensaje y hora específicos.",
+    "author": "Arnau"
+  },
+  "meeting": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/meeting.py",
+    "description": "Crea enlaces de reuniones para plataformas como Zoom, Google Meet o Microsoft Teams (simulado).",
+    "author": "Arnau"
+  },
+  "barcode": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/barcode.py",
+    "description": "Genera y lee códigos de barras (EAN-13, Code 128, QR, etc.).",
+    "author": "Arnau"
+  },
+  "color": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/color.py",
+    "description": "Convierte colores entre diferentes formatos (hex, rgb, hsl, nombre).",
+    "author": "Arnau"
+  },
+  "random": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/random.py",
+    "description": "Genera datos aleatorios como nombres, direcciones, números, etc.",
+    "author": "Arnau"
+  },
+  "mockdata": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/mockdata.py",
+    "description": "Genera datos falsos para testing (nombres, emails, direcciones, etc.).",
+    "author": "Arnau"
+  },
+  "regex": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/regex.py",
+    "description": "Testea y explica expresiones regulares, mostrando coincidencias en un texto.",
+    "author": "Arnau"
+  },
+  "base64": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/base64.py",
+    "description": "Codifica y decodifica texto o archivos en formato Base64.",
+    "author": "Arnau"
+  },
+  "hash": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/hash.py",
+    "description": "Genera hashes criptográficos (MD5, SHA1, SHA256, SHA512) de texto o archivos.",
+    "author": "Arnau"
+  },
+  "compress": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/compress.py",
+    "description": "Comprime y descomprime archivos o directorios en formatos como ZIP o TAR.GZ.",
+    "author": "Arnau"
+  },
+  "backup": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/backup.py",
+    "description": "Crea copias de seguridad de directorios, comprimiéndolos en un archivo ZIP o TAR.GZ.",
+    "author": "Arnau"
+  },
+  "diff": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/diff.py",
+    "description": "Compara las diferencias entre dos archivos de texto o dos cadenas de texto.",
+    "author": "Arnau"
+  },
+  "portscan": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/portscan.py",
+    "description": "Escanea puertos abiertos en una dirección IP o nombre de host (con límites de seguridad).",
+    "author": "Arnau"
+  },
+  "dnslookup": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/dnslookup.py",
+    "description": "Realiza consultas DNS para obtener información como direcciones IP, registros MX, NS, etc.",
+    "author": "Arnau"
+  },
+  "sslcheck": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/sslcheck.py",
+    "description": "Verifica el certificado SSL/TLS de un dominio, mostrando su validez y fecha de expiración.",
+    "author": "Arnau"
+  },
+  "currencyhistory": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/currencyhistory.py",
+    "description": "Obtiene el historial de tipos de cambio entre dos monedas para un rango de fechas.",
+    "author": "Arnau"
+  },
+  "goldprice": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/goldprice.py",
+    "description": "Obtiene el precio actual del oro, plata y otros metales preciosos.",
+    "author": "Arnau"
+  },
+  "fuelprice": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/fuelprice.py",
+    "description": "Obtiene los precios de la gasolina y el diésel en España por provincia o código postal.",
+    "author": "Arnau"
+  },
+  "train": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/train.py",
+    "description": "Obtiene horarios de trenes (Renfe, AVE, etc.) entre dos estaciones.",
+    "author": "Arnau"
+  },
+  "bus": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/bus.py",
+    "description": "Obtiene horarios de autobuses y metros en ciudades españolas (simulado).",
+    "author": "Arnau"
   }
 }
