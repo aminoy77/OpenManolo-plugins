@@ -16,7 +16,7 @@
   },
   "news": {
     "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/news.py",
-    "description": "Obtiene las últimas noticias de una categoría o palabra clave específica.",
+    "description": "Obtiene las últimas noticias de una categoría o palabra clave específica de fuentes reales.",
     "author": "Arnau"
   },
   "sysinfo": {
@@ -97,6 +97,151 @@
   "calendar": {
     "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/calendar.py",
     "description": "Gestiona fechas, horas, recordatorios y eventos.",
+    "author": "Arnau"
+  },
+  "weather": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/weather.py",
+    "description": "Obtiene el clima actual y el pronóstico para cualquier ciudad.",
+    "author": "Arnau"
+  },
+  "reminder": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/reminder.py",
+    "description": "Establece recordatorios con fecha y hora específicas.",
+    "author": "Arnau"
+  },
+  "pomodoro": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/pomodoro.py",
+    "description": "Inicia un temporizador Pomodoro para sesiones de trabajo y descanso.",
+    "author": "Arnau"
+  },
+  "expense": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/expense.py",
+    "description": "Registra y gestiona gastos personales de forma persistente.",
+    "author": "Arnau"
+  },
+  "recipe": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/recipe.py",
+    "description": "Busca recetas de cocina por ingredientes o nombre del plato.",
+    "author": "Arnau"
+  },
+  "movie": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/movie.py",
+    "description": "Busca información de películas y series (sinopsis, reparto, puntuación).",
+    "author": "Arnau"
+  },
+  "definition": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/definition.py",
+    "description": "Busca la definición de una palabra en español.",
+    "author": "Arnau"
+  },
+  "quote": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/quote.py",
+    "description": "Genera citas motivacionales aleatorias en español.",
+    "author": "Arnau"
+  },
+  "fact": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/fact.py",
+    "description": "Proporciona datos curiosos o hechos aleatorios en español.",
+    "author": "Arnau"
+  },
+  "horoscope": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/horoscope.py",
+    "description": "Obtiene el horóscopo diario para un signo zodiacal específico.",
+    "author": "Arnau"
+  },
+  "worldclock": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/worldclock.py",
+    "description": "Obtiene la hora actual en diferentes ciudades o zonas horarias del mundo.",
+    "author": "Arnau"
+  },
+  "urlshortener": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/urlshortener.py",
+    "description": "Acorta una URL larga utilizando un servicio de acortamiento de enlaces.",
+    "author": "Arnau"
+  },
+  "whois": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/whois.py",
+    "description": "Obtiene información WHOIS de un dominio, incluyendo datos de registro y contacto.",
+    "author": "Arnau"
+  },
+  "speedtest": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/speedtest.py",
+    "description": "Realiza un test de velocidad de internet (descarga, subida y ping).",
+    "author": "Arnau"
+  },
+  "bmi": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/bmi.py",
+    "description": "Calcula el Índice de Masa Corporal (IMC) y proporciona una clasificación.",
+    "author": "Arnau"
+  },
+  "age": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/age.py",
+    "description": "Calcula la edad exacta de una persona a partir de su fecha de nacimiento.",
+    "author": "Arnau"
+  },
+  "dictionary": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/dictionary.py",
+    "description": "Diccionario avanzado para buscar definiciones, sinónimos, antónimos y ejemplos de uso.",
+    "author": "Arnau"
+  },
+  "ascii": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/ascii.py",
+    "description": "Convierte texto en arte ASCII.",
+    "author": "Arnau"
+  },
+  "meme": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/meme.py",
+    "description": "Genera memes de texto con plantillas predefinidas.",
+    "author": "Arnau"
+  },
+  "lottery": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/lottery.py",
+    "description": "Genera números aleatorios para diferentes tipos de lotería (Primitiva, Bonoloto, Euromillones).",
+    "author": "Arnau"
+  },
+  "maps": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/maps.py",
+    "description": "Obtiene direcciones y calcula distancias entre dos ubicaciones (ciudades o direcciones específicas).",
+    "author": "Arnau"
+  },
+  "flight": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/flight.py",
+    "description": "Obtiene información de vuelos (estado, precios aproximados, horarios).",
+    "author": "Arnau"
+  },
+  "pdf": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/pdf.py",
+    "description": "Lee y extrae texto de archivos PDF.",
+    "author": "Arnau"
+  },
+  "code": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/code.py",
+    "description": "Ejecuta código Python de forma segura en un entorno aislado (sandbox).",
+    "author": "Arnau"
+  },
+  "imagegen": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/imagegen.py",
+    "description": "Genera prompts detallados para modelos de IA de generación de imágenes (ej. DALL-E, Midjourney, Stable Diffusion).",
+    "author": "Arnau"
+  },
+  "emoji": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/emoji.py",
+    "description": "Busca emojis por palabra clave y genera emojis aleatorios.",
+    "author": "Arnau"
+  },
+  "habit": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/habit.py",
+    "description": "Registra y gestiona hábitos diarios o semanales.",
+    "author": "Arnau"
+  },
+  "ping": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/ping.py",
+    "description": "Realiza un ping a una dirección IP o nombre de host para comprobar la conectividad.",
+    "author": "Arnau"
+  },
+  "battery": {
+    "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/battery.py",
+    "description": "Obtiene información detallada de la batería (nivel, estado, tiempo restante) en laptops.",
     "author": "Arnau"
   }
 }
