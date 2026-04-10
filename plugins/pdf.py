@@ -1,5 +1,5 @@
 PLUGIN_NAME = "pdf"
-PLUGIN_DESCRIPTION = "Lee y extrae texto de archivos PDF."
+PLUGIN_DESCRIPTION = "Creates a real PDF file with title and content sections"
 PLUGIN_SCHEMA = {
     "type": "function",
     "function": {
@@ -8,32 +8,96 @@ PLUGIN_SCHEMA = {
         "parameters": {
             "type": "object",
             "properties": {
-                "file_path": {"type": "string", "description": "Ruta al archivo PDF"},
-                "page_number": {"type": "integer", "description": "Número de página a extraer (opcional, si no se especifica, extrae todo)"}
+                "path": {
+                    "type": "string",
+                    "description": "Full path where to save the .pdf file"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Document title"
+                },
+                "sections": {
+                    "type": "array",
+                    "description": "List of sections, each with 'heading' and 'content'",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "heading": {"type": "string"},
+                            "content": {"type": "string"}
+                        }
+                    }
+                }
             },
-            "required": ["file_path"]
+            "required": ["path", "title", "sections"]
         }
     }
 }
 
-def run(file_path: str, page_number: int = None) -> str:
-    try:
-        from pypdf import PdfReader
-        reader = PdfReader(file_path)
-        if page_number is not None:
-            if 0 < page_number <= len(reader.pages):
-                page = reader.pages[page_number - 1] # pypdf es 0-indexado
-                return page.extract_text()
-            else:
-                return f"Error: Número de página inválido. El PDF tiene {len(reader.pages)} páginas."
-        else:
-            text = ""
-            for page in reader.pages:
-                text += page.extract_text()
-            return text
-    except ImportError:
-        return "Error: La librería \'pypdf\' no está instalada. Por favor, instálala con \'pip install pypdf\'."
-    except FileNotFoundError:
-        return f"Error: El archivo PDF en la ruta {file_path} no fue encontrado."
-    except Exception as e:
-        return f"Error al leer el archivo PDF: {e}"
+
+def run(path: str, title: str, sections: list) -> str:
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import cm
+    from reportlab.lib import colors
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib.enums import TA_CENTER, TA_LEFT
+
+    doc = SimpleDocTemplate(
+        path,
+        pagesize=A4,
+        leftMargin=2.5*cm,
+        rightMargin=2.5*cm,
+        topMargin=2.5*cm,
+        bottomMargin=2.5*cm
+    )
+
+    styles = getSampleStyleSheet()
+
+    title_style = ParagraphStyle(
+        "CustomTitle",
+        parent=styles["Title"],
+        fontSize=20,
+        textColor=colors.HexColor("#1a1a2e"),
+        alignment=TA_CENTER,
+        spaceAfter=20,
+    )
+
+    heading_style = ParagraphStyle(
+        "CustomHeading",
+        parent=styles["Heading1"],
+        fontSize=13,
+        textColor=colors.HexColor("#16213e"),
+        spaceBefore=14,
+        spaceAfter=6,
+    )
+
+    body_style = ParagraphStyle(
+        "CustomBody",
+        parent=styles["Normal"],
+        fontSize=10,
+        leading=16,
+        textColor=colors.HexColor("#333333"),
+        spaceAfter=6,
+    )
+
+    story = []
+    story.append(Paragraph(title, title_style))
+    story.append(Spacer(1, 0.5*cm))
+
+    for section in sections:
+        heading = section.get("heading", "")
+        content = section.get("content", "")
+
+        if heading:
+            story.append(Paragraph(heading, heading_style))
+
+        if content:
+            for line in content.split("\n"):
+                line = line.strip()
+                if line:
+                    story.append(Paragraph(line, body_style))
+
+        story.append(Spacer(1, 0.3*cm))
+
+    doc.build(story)
+    return f"PDF created: {path}"

@@ -1,6 +1,6 @@
 # HelloChusquis-Plugins 🚀
 
-¡Bienvenido al repositorio oficial de plugins para **HelloChusquis**! Esta es una colección masiva de **80 plugins** diseñados para extender las capacidades de tu agente de terminal AI, convirtiéndolo en una herramienta de productividad definitiva.
+¡Bienvenido al repositorio oficial de plugins para **HelloChusquis**! Esta es una colección masiva de **81 plugins** diseñados para extender las capacidades de tu agente de terminal AI, convirtiéndolo en una herramienta de productividad definitiva.
 
 ## 🛠️ Instalación
 
@@ -14,7 +14,7 @@ hellochusquis install <nombre_del_plugin>
 
 ---
 
-## 🧩 Plugins Disponibles (80)
+## 🧩 Plugins Disponibles (81)
 
 | Categoría | Plugin | Descripción |
 | :--- | :--- | :--- |
@@ -24,7 +24,8 @@ hellochusquis install <nombre_del_plugin>
 | | `qr` | Generador de códigos QR. |
 | | `urlshortener` | Acortador de enlaces (TinyURL). |
 | | `ascii` | Generador de arte ASCII. |
-| | `pdf` | Extractor de texto de archivos PDF. |
+| | `pdf` | Crea un archivo PDF real con título y secciones de contenido. |
+| | `docx` | Crea un archivo Microsoft Word .docx real con título y secciones de contenido. |
 | | `base64` | Codifica y decodifica texto o archivos en Base64. |
 | | `hash` | Genera hashes criptográficos (MD5, SHA256, etc.). |
 | | `compress` | Comprime y descomprime archivos o directorios. |
