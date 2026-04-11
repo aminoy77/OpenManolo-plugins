@@ -1,5 +1,5 @@
 PLUGIN_NAME = "calculator"
-PLUGIN_DESCRIPTION = "Realiza operaciones aritméticas básicas como suma, resta, multiplicación y división."
+PLUGIN_DESCRIPTION = "Realiza operaciones matemáticas básicas de forma segura."
 PLUGIN_SCHEMA = {
     "type": "function",
     "function": {
@@ -8,35 +8,36 @@ PLUGIN_SCHEMA = {
         "parameters": {
             "type": "object",
             "properties": {
-                "operation": {
-                    "type": "string",
-                    "description": "La operación a realizar (sum, subtract, multiply, divide)",
-                    "enum": ["sum", "subtract", "multiply", "divide"]
-                },
-                "num1": {
-                    "type": "number",
-                    "description": "El primer número"
-                },
-                "num2": {
-                    "type": "number",
-                    "description": "El segundo número"
-                }
+                "expression": {"type": "string", "description": "La expresión matemática a evaluar (ej. \"2 + 2\")"}
             },
-            "required": ["operation", "num1", "num2"]
+            "required": ["expression"]
         }
     }
 }
 
-def run(operation: str, num1: float, num2: float) -> str:
-    if operation == "sum":
-        return str(num1 + num2)
-    elif operation == "subtract":
-        return str(num1 - num2)
-    elif operation == "multiply":
-        return str(num1 * num2)
-    elif operation == "divide":
-        if num2 == 0:
-            return "Error: División por cero"
-        return str(num1 / num2)
-    else:
-        return "Error: Operación no soportada"
+def run(expression: str) -> str:
+    try:
+        # Lista blanca de operaciones y funciones permitidas
+        allowed_names = {
+            '__builtins__': {},
+            'sqrt': lambda x: x**0.5,
+            'pow': pow,
+            'sin': __import__('math').sin,
+            'cos': __import__('math').cos,
+            'tan': __import__('math').tan,
+            'log': __import__('math').log,
+            'log10': __import__('math').log10,
+            'pi': __import__('math').pi,
+            'e': __import__('math').e,
+        }
+        # Evaluar la expresión de forma segura
+        result = str(eval(expression, {"__builtins__": None}, allowed_names))
+        return f"Resultado de '{expression}': {result}"
+    except SyntaxError:
+        return f"Error: Expresión matemática inválida: '{expression}'"
+    except TypeError:
+        return f"Error: Operación no permitida o tipo incorrecto en '{expression}'"
+    except NameError as e:
+        return f"Error: Función o variable no permitida en '{expression}'. {e}"
+    except Exception as e:
+        return f"Error al calcular '{expression}': {e}"

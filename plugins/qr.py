@@ -1,5 +1,5 @@
 PLUGIN_NAME = "qr"
-PLUGIN_DESCRIPTION = "Genera códigos QR a partir de texto o URLs."
+PLUGIN_DESCRIPTION = "Genera un código QR a partir de un texto o URL y lo guarda como imagen."
 PLUGIN_SCHEMA = {
     "type": "function",
     "function": {
@@ -9,7 +9,7 @@ PLUGIN_SCHEMA = {
             "type": "object",
             "properties": {
                 "data": {"type": "string", "description": "El texto o URL para codificar en el QR"},
-                "filename": {"type": "string", "description": "Nombre del archivo de imagen QR a guardar (ej. my_qr.png)", "default": "qrcode.png"}
+                "filename": {"type": "string", "description": "Nombre del archivo de imagen a guardar (ej. \'mi_qr.png\'). Por defecto es \'qrcode.png\'.", "default": "qrcode.png"}
             },
             "required": ["data"]
         }
@@ -19,10 +19,26 @@ PLUGIN_SCHEMA = {
 def run(data: str, filename: str = "qrcode.png") -> str:
     try:
         import qrcode
-        img = qrcode.make(data)
-        img.save(filename)
-        return f"Código QR generado y guardado como {filename}"
+        from pathlib import Path
+
+        # Crear el objeto QR
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data(data)
+        qr.make(fit=True)
+
+        img = qr.make_image(fill_color="black", back_color="white")
+
+        # Guardar la imagen en el directorio de trabajo
+        save_path = Path.cwd() / filename
+        img.save(save_path)
+
+        return f"Código QR generado y guardado en: {save_path}"
     except ImportError:
-        return "Error: La librería 'qrcode' no está instalada. Por favor, instálala con 'pip install qrcode'."
+        return "ERROR: La librería \'qrcode\' no está instalada. Ejecuta: pip3 install qrcode --break-system-packages"
     except Exception as e:
         return f"Error al generar el código QR: {e}"

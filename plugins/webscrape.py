@@ -1,5 +1,5 @@
 PLUGIN_NAME = "webscrape"
-PLUGIN_DESCRIPTION = "Extrae información específica de cualquier página web utilizando selectores CSS o XPath."
+PLUGIN_DESCRIPTION = "Extrae el texto principal de una página web, eliminando elementos de navegación y publicidad."
 PLUGIN_SCHEMA = {
     "type": "function",
     "function": {
@@ -8,47 +8,42 @@ PLUGIN_SCHEMA = {
         "parameters": {
             "type": "object",
             "properties": {
-                "url": {"type": "string", "description": "La URL de la página web a scrapear"},
-                "selector": {"type": "string", "description": "Selector CSS o XPath para el elemento a extraer"},
-                "attribute": {"type": "string", "description": "Atributo a extraer del elemento (ej. 'href', 'src', 'text'). Por defecto, extrae el texto."}
+                "url": {"type": "string", "description": "La URL de la página web a extraer"}
             },
-            "required": ["url", "selector"]
+            "required": ["url"]
         }
     }
 }
 
-def run(url: str, selector: str, attribute: str = "text") -> str:
-    import httpx
-    from selectolax.parser import HTMLParser
-
+def run(url: str) -> str:
     try:
-        response = httpx.get(url, follow_redirects=True, timeout=10)
-        response.raise_for_status()
-        tree = HTMLParser(response.text)
+        import httpx
+        from bs4 import BeautifulSoup
 
-        elements = tree.css(selector)
-        if not elements:
-            return f"No se encontraron elementos con el selector '{selector}' en la URL {url}."
+        response = httpx.get(url, timeout=15)
+        response.raise_for_status()  # Lanza una excepción para códigos de estado HTTP erróneos
 
-        results = []
-        for node in elements:
-            if attribute == "text":
-                results.append(node.text(strip=True))
-            else:
-                attr_value = node.attributes.get(attribute)
-                if attr_value:
-                    results.append(attr_value)
-        
-        if results:
-            return "\n".join(results)
-        else:
-            return f"No se pudo extraer el atributo '{attribute}' de los elementos encontrados."
+        soup = BeautifulSoup(response.text, "html.parser")
 
-    except ImportError:
-        return "Error: Las librerías 'httpx' y 'selectolax' no están instaladas. Por favor, instálalas con 'pip install httpx selectolax'."
+        # Eliminar scripts, estilos, navegación, headers, footers, etc.
+        for unwanted_tag in soup(["script", "style", "nav", "header", "footer", "aside", "form", "img", "svg", "canvas"]):
+            unwanted_tag.decompose()
+
+        # Extraer texto de los elementos principales del contenido
+        main_content_tags = soup.find_all(["p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote"])
+        text_content = "\n".join([tag.get_text(separator=" ", strip=True) for tag in main_content_tags if tag.get_text(strip=True)])
+
+        if not text_content:
+            # Fallback si no se encuentra contenido principal estructurado
+            text_content = soup.get_text(separator=" ", strip=True)
+
+        # Limpiar múltiples espacios en blanco y saltos de línea
+        import re
+        text_content = re.sub(r"\s+", " ", text_content).strip()
+        text_content = re.sub(r"\n\s*\n", "\n\n", text_content).strip()
+
+        return text_content[:4000] + ("..." if len(text_content) > 4000 else "")
     except httpx.RequestError as e:
         return f"Error de conexión al acceder a la URL: {e}"
-    except httpx.HTTPStatusError as e:
-        return f"Error HTTP al acceder a la URL: {e.response.status_code} - {e.response.text}"
     except Exception as e:
-        return f"Error inesperado al extraer información de la web: {e}"
+        return f"Error al extraer contenido de la web: {e}"

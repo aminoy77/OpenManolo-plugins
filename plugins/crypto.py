@@ -1,5 +1,5 @@
 PLUGIN_NAME = "crypto"
-PLUGIN_DESCRIPTION = "Obtiene precios de criptomonedas en tiempo real."
+PLUGIN_DESCRIPTION = "Obtiene el precio actual de una criptomoneda en USD."
 PLUGIN_SCHEMA = {
     "type": "function",
     "function": {
@@ -8,32 +8,31 @@ PLUGIN_SCHEMA = {
         "parameters": {
             "type": "object",
             "properties": {
-                "symbol": {"type": "string", "description": "Símbolo de la criptomoneda (ej. BTC, ETH)"},
-                "currency": {"type": "string", "description": "Moneda de referencia (ej. USD, EUR)", "default": "USD"}
+                "symbol": {"type": "string", "description": "El símbolo de la criptomoneda (ej. BTC, ETH, SOL)"}
             },
             "required": ["symbol"]
         }
     }
 }
 
-def run(symbol: str, currency: str = "USD") -> str:
-    import httpx
+def run(symbol: str) -> str:
     try:
-        # Usaremos la API de CoinGecko como ejemplo (API pública y gratuita para un uso limitado)
-        url = f"https://api.coingecko.com/api/v3/simple/price?ids={symbol.lower()}&vs_currencies={currency.lower()}"
-        response = httpx.get(url, timeout=10)
-        response.raise_for_status() # Lanza una excepción para códigos de estado HTTP erróneos
+        import httpx
+
+        symbol = symbol.upper()
+        api_url = f"https://api.coinbase.com/v2/prices/{symbol}-USD/spot"
+        response = httpx.get(api_url, timeout=10)
+        response.raise_for_status()  # Lanza una excepción para códigos de estado HTTP erróneos
         data = response.json()
 
-        if symbol.lower() in data and currency.lower() in data[symbol.lower()]:
-            price = data[symbol.lower()][currency.lower()]
-            return f"El precio actual de {symbol.upper()} es {price} {currency.upper()}.
-            (Fuente: CoinGecko)"
-        else:
-            return f"No se pudo obtener el precio para {symbol.upper()} en {currency.upper()}. Verifica el símbolo."
+        if "data" not in data or "amount" not in data["data"]:
+            return f"Error: No se pudo obtener el precio para la criptomoneda {symbol}. Símbolo no válido o no soportado."
+
+        price = float(data["data"]["amount"])
+        return f"El precio actual de {symbol} es {price:.2f} USD."
     except httpx.RequestError as e:
-        return f"Error de conexión al obtener el precio de la criptomoneda: {e}"
-    except httpx.HTTPStatusError as e:
-        return f"Error HTTP al obtener el precio de la criptomoneda: {e.response.status_code} - {e.response.text}"
+        return f"Error de conexión al API de Coinbase: {e}"
+    except ValueError:
+        return "Error: La respuesta del API no es válida."
     except Exception as e:
-        return f"Error inesperado al obtener el precio de la criptomoneda: {e}"
+        return f"Error al obtener el precio de {symbol}: {e}"
