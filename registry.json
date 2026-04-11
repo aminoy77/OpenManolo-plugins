@@ -56,7 +56,7 @@
   },
   "stocks": {
     "url": "https://raw.githubusercontent.com/aminoy77/HelloChusquis-plugins/main/plugins/stocks.py",
-    "description": "Obtiene precios de acciones y datos de bolsa en tiempo real.",
+    "description": "Get real stock data including current price, historical data, and analysis for any ticker symbol",
     "author": "Arnau"
   },
   "todo": {
