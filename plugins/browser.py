@@ -54,33 +54,41 @@ def run(action: str, url: str = "", query: str = "", headless: bool = True) -> s
                 page.wait_for_load_state("domcontentloaded")
                 title = page.title()
                 return f"Opened: {url}\nTitle: {title}"
-
             elif action == "search":
                 if not query:
                     return "ERROR: Query required for search action"
-                page.goto(f"https://www.google.com/search?q={query}&hl=es", timeout=15000)
+                
+                # Usa Brave Search HTML que no bloquea bots
+                encoded = query.replace(" ", "+")
+                page.goto(f"https://search.brave.com/search?q={encoded}&source=web", timeout=15000)
                 page.wait_for_load_state("domcontentloaded")
+                page.wait_for_timeout(2000)
 
                 results = []
-                items = page.query_selector_all("div.g")[:8]
+                items = page.query_selector_all("[data-type=\'web\'] .snippet")[:5]
+                
                 for item in items:
                     try:
-                        title_el = item.query_selector("h3")
-                        link_el = item.query_selector("a")
-                        snippet_el = item.query_selector("div[data-sncf], div.VwiC3b, span.aCOpRe")
-
-                        title = title_el.inner_text() if title_el else ""
-                        link = link_el.get_attribute("href") if link_el else ""
-                        snippet = snippet_el.inner_text() if snippet_el else ""
-
-                        if title and link:
-                            results.append(f"• {title}\n  {link}\n  {snippet[:150]}")
+                        title_el = item.query_selector(".snippet-title")
+                        url_el = item.query_selector("cite")
+                        desc_el = item.query_selector(".snippet-description")
+                        
+                        title = title_el.inner_text().strip() if title_el else ""
+                        url = url_el.inner_text().strip() if url_el else ""
+                        desc = desc_el.inner_text().strip() if desc_el else ""
+                        
+                        if title:
+                            results.append(f"• {title}\n  {url}\n  {desc[:200]}")
                     except Exception:
                         continue
 
                 if not results:
-                    return f"No results found for: {query}"
-                return f"Search results for \'{query}\':\n\n" + "\n\n".join(results)
+                    # Fallback — extrae texto bruto de la página
+                    text = page.inner_text("body")
+                    return f"Search results (raw):\n{text[:2000]}"
+                
+                return f"Search results for \'{query}\
+':\n\n" + "\n\n".join(results)
 
             elif action == "extract":
                 if not url:
